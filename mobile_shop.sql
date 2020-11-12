@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.3
+-- version 4.7.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 08, 2020 at 07:31 AM
--- Server version: 10.4.14-MariaDB
--- PHP Version: 7.4.11
+-- Generation Time: Nov 12, 2020 at 07:01 PM
+-- Server version: 10.1.25-MariaDB
+-- PHP Version: 7.1.7
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -30,7 +31,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `activity` (
   `id` int(11) NOT NULL,
   `date_time` datetime DEFAULT NULL,
-  `description` text DEFAULT NULL,
+  `description` text,
   `user_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -779,7 +780,26 @@ INSERT INTO `activity` (`id`, `date_time`, `description`, `user_id`) VALUES
 (738, '2020-11-07 09:48:29', 'DeviceModel updated - ', 1),
 (739, '2020-11-07 09:49:06', 'DeviceModel updated - ', 1),
 (740, '2020-11-07 09:49:21', 'DeviceModel updated - ', 1),
-(741, '2020-11-07 09:49:35', 'DeviceModel updated - ', 1);
+(741, '2020-11-07 09:49:35', 'DeviceModel updated - ', 1),
+(742, '2020-11-09 14:16:34', 'Logout - \'admin\'', 1),
+(743, '2020-11-09 14:16:38', 'Login - \'admin\'', 1),
+(744, '2020-11-09 14:18:04', 'PaymentClose - saved : ', 1),
+(745, '2020-11-09 14:18:15', 'PaymentClose - deleted : ', 1),
+(746, '2020-11-09 15:28:15', 'Logout - \'admin\'', 1),
+(747, '2020-11-09 15:28:18', 'Login - \'admin\'', 1),
+(748, '2020-11-10 21:47:56', 'Login - \'admin\'', 1),
+(749, '2020-11-10 22:24:25', 'JobClose - saved : ', 1),
+(750, '2020-11-10 22:28:38', 'JobClose - saved : ', 1),
+(751, '2020-11-11 00:26:23', 'Logout - \'admin\'', 1),
+(752, '2020-11-11 00:26:27', 'Login - \'admin\'', 1),
+(753, '2020-11-11 12:54:01', 'Login - \'admin\'', 1),
+(754, '2020-11-11 21:27:01', 'Login - \'admin\'', 1),
+(755, '2020-11-11 22:16:18', 'Logout - \'admin\'', 1),
+(756, '2020-11-11 22:16:22', 'Login - \'admin\'', 1),
+(757, '2020-11-11 22:43:34', 'Device Repair - saved', 1),
+(758, '2020-11-11 23:54:48', 'Logout - \'admin\'', 1),
+(759, '2020-11-11 23:54:51', 'Login - \'admin\'', 1),
+(760, '2020-11-12 22:46:26', 'Login - \'admin\'', 1);
 
 -- --------------------------------------------------------
 
@@ -1091,7 +1111,7 @@ CREATE TABLE `daily_expences` (
   `id` int(11) NOT NULL,
   `amount` float NOT NULL,
   `exp_date` date NOT NULL,
-  `feed_date` datetime NOT NULL DEFAULT current_timestamp(),
+  `feed_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `expence_cat` int(11) NOT NULL,
   `Note` varchar(2000) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -1300,8 +1320,9 @@ CREATE TABLE `device_repair` (
 --
 
 INSERT INTO `device_repair` (`id`, `job_no`, `job_date`, `system_date`, `customer_name`, `customer_address`, `id_number`, `contact_no`, `delivery_date`, `product`, `device_model_id`, `imei_serial`, `location_number`, `job_cost`, `advanced_payment`, `brand_id`, `repair_status`, `comment`, `image_top`, `image_bottom`, `image_right`, `image_left`, `image_front`, `image_back`) VALUES
-(1, 2872, '2020-10-04 00:08:54', '2020-11-07 00:11:39', 'Priyantha', '', '', '0766525055', '2020-11-15 00:00:00', 0, 17, '', 3, 0, 0, 6, 5, '', '', '', '', '', '', ''),
-(2, 2871, '2020-10-03 00:22:09', '2020-11-07 00:26:14', 'Thilina', '', '', '0770838186', '2020-11-20 00:00:00', 0, 19, '', 0, 0, 0, 3, 0, '', '', '', '', '', '', '');
+(1, 2872, '2020-10-04 00:08:54', '2020-11-07 00:11:39', 'Priyantha', '', '', '0766525055', '2020-11-15 00:00:00', 18, 17, '', 3, 0, 0, 6, 5, '', '', '', '', '', '', ''),
+(2, 2871, '2020-10-03 00:22:09', '2020-11-07 00:26:14', 'Thilina', '', '', '0770838186', '2020-11-20 00:00:00', 18, 19, '', 3, 0, 0, 3, 5, '', '', '', '', '', '', ''),
+(3, 3, '2020-11-12 00:00:00', '2020-11-11 22:43:33', 'Dileep Prabath', '40/B Green View', '999', '999', '2020-11-11 00:00:00', 18, 13, '9999', 3, 99, 99, 11, 5, '999999999', '', '', '', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -1566,7 +1587,7 @@ CREATE TABLE `invoice_return` (
   `date_time` datetime DEFAULT NULL,
   `invoice_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
-  `note` text DEFAULT NULL,
+  `note` text,
   `deliverer_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -1634,8 +1655,19 @@ CREATE TABLE `job_close` (
   `status` int(11) NOT NULL,
   `repair_id` int(11) NOT NULL,
   `comment` varchar(10000) NOT NULL,
-  `customer` varchar(500) NOT NULL
+  `customer` varchar(500) NOT NULL,
+  `type` varchar(500) NOT NULL,
+  `warranty` varchar(500) NOT NULL,
+  `amount` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `job_close`
+--
+
+INSERT INTO `job_close` (`id`, `status`, `repair_id`, `comment`, `customer`, `type`, `warranty`, `amount`) VALUES
+(1, 3, 1, 'sds', '', '', '1', 0),
+(2, 3, 2, 'kkjgtfm', '', '', '1', -3000);
 
 -- --------------------------------------------------------
 
@@ -1808,7 +1840,8 @@ CREATE TABLE `payment_close` (
   `repair_id` int(11) NOT NULL,
   `system_date` datetime NOT NULL,
   `comment` varchar(1000) NOT NULL,
-  `balance` int(11) NOT NULL
+  `value` int(11) NOT NULL,
+  `type` varchar(500) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -1980,7 +2013,7 @@ CREATE TABLE `product` (
   `min_qty` int(11) DEFAULT NULL,
   `code` varchar(100) NOT NULL,
   `barcode` varchar(500) DEFAULT NULL,
-  `warrenty_period` float NOT NULL DEFAULT 0,
+  `warrenty_period` float NOT NULL DEFAULT '0',
   `image` varchar(200) DEFAULT NULL,
   `location_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -2061,7 +2094,7 @@ CREATE TABLE `production` (
   `id` int(11) NOT NULL,
   `code` varchar(45) DEFAULT NULL,
   `date` date DEFAULT NULL,
-  `description` text DEFAULT NULL,
+  `description` text,
   `production_status_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -2134,7 +2167,7 @@ INSERT INTO `production_status` (`id`, `name`) VALUES
 CREATE TABLE `product_return` (
   `id` int(11) NOT NULL,
   `date_time` varchar(45) DEFAULT NULL,
-  `note` text DEFAULT NULL,
+  `note` text,
   `user_id` int(11) NOT NULL,
   `deliverer_id` int(11) DEFAULT NULL,
   `customer_id` int(11) DEFAULT NULL,
@@ -2154,7 +2187,7 @@ CREATE TABLE `product_return_batch` (
   `return_reason_id` int(11) NOT NULL,
   `qty` int(11) DEFAULT NULL,
   `unit_price` decimal(12,2) DEFAULT NULL,
-  `discount` float DEFAULT 0
+  `discount` float DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -2167,7 +2200,7 @@ CREATE TABLE `product_return_invoice` (
   `id` int(11) NOT NULL,
   `product_return_id` int(11) NOT NULL,
   `invoice_id` int(11) NOT NULL,
-  `return_amount` float NOT NULL DEFAULT 0
+  `return_amount` float NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -2334,7 +2367,9 @@ INSERT INTO `repaire_device_fault` (`id`, `repair_id`, `device_fault_id`) VALUES
 (51, 73, 2),
 (52, 73, 3),
 (53, 1, 1),
-(54, 2, 1);
+(54, 2, 1),
+(55, 3, 3),
+(56, 3, 31);
 
 -- --------------------------------------------------------
 
@@ -2387,7 +2422,8 @@ INSERT INTO `repair_collected_accessories` (`id`, `collected_accessories`, `repa
 (32, 5, 73),
 (33, 3, 1),
 (34, 5, 1),
-(35, 3, 2);
+(35, 3, 2),
+(36, 3, 3);
 
 -- --------------------------------------------------------
 
@@ -2439,7 +2475,8 @@ INSERT INTO `repair_possible_solution` (`id`, `possible_solution_id`, `repair_id
 (31, 4, 68),
 (32, 5, 68),
 (33, 2, 73),
-(34, 4, 73);
+(34, 4, 73),
+(35, 4, 3);
 
 -- --------------------------------------------------------
 
@@ -2490,7 +2527,7 @@ INSERT INTO `return_reason` (`id`, `name`) VALUES
 
 CREATE TABLE `return_table` (
   `id` int(11) NOT NULL,
-  `date_time` datetime NOT NULL DEFAULT current_timestamp(),
+  `date_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `note` varchar(500) NOT NULL,
   `user_id` int(11) NOT NULL,
   `deliverer_id` int(11) NOT NULL,
@@ -2593,14 +2630,14 @@ CREATE TABLE `user` (
   `user_status_id` int(11) NOT NULL,
   `name` varchar(400) DEFAULT NULL,
   `username` varchar(200) DEFAULT NULL,
-  `password` text DEFAULT NULL,
+  `password` text,
   `dob` date DEFAULT NULL,
   `contact_no` varchar(45) DEFAULT NULL,
   `email` varchar(45) DEFAULT NULL,
   `nic` varchar(400) DEFAULT NULL,
   `address` varchar(400) DEFAULT NULL,
   `image` varchar(400) DEFAULT NULL,
-  `soft_delete` int(11) NOT NULL DEFAULT 0
+  `soft_delete` int(11) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -3270,524 +3307,397 @@ ALTER TABLE `user_status`
 -- AUTO_INCREMENT for table `activity`
 --
 ALTER TABLE `activity`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=742;
-
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=761;
 --
 -- AUTO_INCREMENT for table `allocation`
 --
 ALTER TABLE `allocation`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
-
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `bank`
 --
 ALTER TABLE `bank`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
-
 --
 -- AUTO_INCREMENT for table `batch`
 --
 ALTER TABLE `batch`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
-
 --
 -- AUTO_INCREMENT for table `brand`
 --
 ALTER TABLE `brand`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
-
 --
 -- AUTO_INCREMENT for table `category`
 --
 ALTER TABLE `category`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
-
 --
 -- AUTO_INCREMENT for table `cheque`
 --
 ALTER TABLE `cheque`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT for table `cheque_status`
 --
 ALTER TABLE `cheque_status`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
 --
 -- AUTO_INCREMENT for table `collected_accessories`
 --
 ALTER TABLE `collected_accessories`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
-
 --
 -- AUTO_INCREMENT for table `customer`
 --
 ALTER TABLE `customer`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT for table `customer_order`
 --
 ALTER TABLE `customer_order`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT for table `customer_order_product`
 --
 ALTER TABLE `customer_order_product`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT for table `customer_order_status`
 --
 ALTER TABLE `customer_order_status`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
 --
 -- AUTO_INCREMENT for table `customer_payment`
 --
 ALTER TABLE `customer_payment`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT for table `daily_expences`
 --
 ALTER TABLE `daily_expences`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT for table `day_start`
 --
 ALTER TABLE `day_start`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT for table `deliverer`
 --
 ALTER TABLE `deliverer`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
 --
 -- AUTO_INCREMENT for table `deliverer_inventory`
 --
 ALTER TABLE `deliverer_inventory`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT for table `deliverer_user`
 --
 ALTER TABLE `deliverer_user`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT for table `designation`
 --
 ALTER TABLE `designation`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
 --
 -- AUTO_INCREMENT for table `device_fault`
 --
 ALTER TABLE `device_fault`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
-
 --
 -- AUTO_INCREMENT for table `device_model`
 --
 ALTER TABLE `device_model`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
-
 --
 -- AUTO_INCREMENT for table `device_repair`
 --
 ALTER TABLE `device_repair`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `discription`
 --
 ALTER TABLE `discription`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
 --
 -- AUTO_INCREMENT for table `expence_cat`
 --
 ALTER TABLE `expence_cat`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT for table `grn`
 --
 ALTER TABLE `grn`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
-
 --
 -- AUTO_INCREMENT for table `grn_material`
 --
 ALTER TABLE `grn_material`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT for table `grn_product`
 --
 ALTER TABLE `grn_product`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
-
 --
 -- AUTO_INCREMENT for table `grn_type`
 --
 ALTER TABLE `grn_type`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
 --
 -- AUTO_INCREMENT for table `inventory`
 --
 ALTER TABLE `inventory`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
-
 --
 -- AUTO_INCREMENT for table `invoice`
 --
 ALTER TABLE `invoice`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT for table `invoice_condition`
 --
 ALTER TABLE `invoice_condition`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
 --
 -- AUTO_INCREMENT for table `invoice_inventory`
 --
 ALTER TABLE `invoice_inventory`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT for table `invoice_return`
 --
 ALTER TABLE `invoice_return`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT for table `invoice_return_inventory`
 --
 ALTER TABLE `invoice_return_inventory`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT for table `invoice_status`
 --
 ALTER TABLE `invoice_status`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
 --
 -- AUTO_INCREMENT for table `invoice_type`
 --
 ALTER TABLE `invoice_type`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
 --
 -- AUTO_INCREMENT for table `job_close`
 --
 ALTER TABLE `job_close`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `job_close_status`
 --
 ALTER TABLE `job_close_status`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
-
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `location`
 --
 ALTER TABLE `location`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
 --
 -- AUTO_INCREMENT for table `location_number`
 --
 ALTER TABLE `location_number`
   MODIFY `id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
-
 --
 -- AUTO_INCREMENT for table `material`
 --
 ALTER TABLE `material`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT for table `material_stock`
 --
 ALTER TABLE `material_stock`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT for table `module`
 --
 ALTER TABLE `module`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
-
 --
 -- AUTO_INCREMENT for table `payment`
 --
 ALTER TABLE `payment`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT for table `payment_cheque`
 --
 ALTER TABLE `payment_cheque`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT for table `payment_close`
 --
 ALTER TABLE `payment_close`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT for table `payment_invoice`
 --
 ALTER TABLE `payment_invoice`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT for table `payment_method`
 --
 ALTER TABLE `payment_method`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
 --
 -- AUTO_INCREMENT for table `payment_status`
 --
 ALTER TABLE `payment_status`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
 --
 -- AUTO_INCREMENT for table `payment_type`
 --
 ALTER TABLE `payment_type`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
 --
 -- AUTO_INCREMENT for table `petty_cash`
 --
 ALTER TABLE `petty_cash`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT for table `possible_solution`
 --
 ALTER TABLE `possible_solution`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
-
 --
 -- AUTO_INCREMENT for table `privilege`
 --
 ALTER TABLE `privilege`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
-
 --
 -- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
-
 --
 -- AUTO_INCREMENT for table `production`
 --
 ALTER TABLE `production`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT for table `production_material`
 --
 ALTER TABLE `production_material`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT for table `production_material_stock`
 --
 ALTER TABLE `production_material_stock`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT for table `production_product`
 --
 ALTER TABLE `production_product`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT for table `production_status`
 --
 ALTER TABLE `production_status`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
 --
 -- AUTO_INCREMENT for table `product_return`
 --
 ALTER TABLE `product_return`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT for table `product_return_batch`
 --
 ALTER TABLE `product_return_batch`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT for table `product_return_invoice`
 --
 ALTER TABLE `product_return_invoice`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT for table `purchase_order`
 --
 ALTER TABLE `purchase_order`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT for table `purchase_order_material`
 --
 ALTER TABLE `purchase_order_material`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT for table `purchase_order_product`
 --
 ALTER TABLE `purchase_order_product`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT for table `purchase_order_status`
 --
 ALTER TABLE `purchase_order_status`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
 --
 -- AUTO_INCREMENT for table `purchase_order_type`
 --
 ALTER TABLE `purchase_order_type`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
 --
 -- AUTO_INCREMENT for table `remainder`
 --
 ALTER TABLE `remainder`
-  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
-
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `repaire_device_fault`
 --
 ALTER TABLE `repaire_device_fault`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
-
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
 --
 -- AUTO_INCREMENT for table `repair_collected_accessories`
 --
 ALTER TABLE `repair_collected_accessories`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
-
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 --
 -- AUTO_INCREMENT for table `repair_possible_solution`
 --
 ALTER TABLE `repair_possible_solution`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
-
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 --
 -- AUTO_INCREMENT for table `repair_status`
 --
 ALTER TABLE `repair_status`
   MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
-
 --
 -- AUTO_INCREMENT for table `return_reason`
 --
 ALTER TABLE `return_reason`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
 --
 -- AUTO_INCREMENT for table `return_table`
 --
 ALTER TABLE `return_table`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT for table `role`
 --
 ALTER TABLE `role`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
 --
 -- AUTO_INCREMENT for table `route`
 --
 ALTER TABLE `route`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
 --
 -- AUTO_INCREMENT for table `supplier`
 --
 ALTER TABLE `supplier`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
-
 --
 -- AUTO_INCREMENT for table `target`
 --
 ALTER TABLE `target`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `target_month`
---
-ALTER TABLE `target_month`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `user`
---
-ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT for table `user_role`
---
-ALTER TABLE `user_role`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
-
---
--- AUTO_INCREMENT for table `user_status`
---
-ALTER TABLE `user_status`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- Constraints for dumped tables
---
-
---
--- Constraints for table `activity`
---
-ALTER TABLE `activity`
-  ADD CONSTRAINT `fk_activity_user1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Constraints for table `allocation`
---
-ALTER TABLE `allocation`
-  ADD CONSTRAINT `allocation_ibfk_1` FOREIGN KEY (`repair_id`) REFERENCES `device_repair` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `allocation_ibfk_3` FOREIGN KEY (`batch_id`) REFERENCES `batch` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Constraints for table `cheque`
---
-ALTER TABLE `cheque`
-  ADD CONSTRAINT `fk_cheque_bank1` FOREIGN KEY (`bank_id`) REFERENCES `bank` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_cheque_cheque_status1` FOREIGN KEY (`cheque_status_id`) REFERENCES `cheque_status` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-COMMIT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

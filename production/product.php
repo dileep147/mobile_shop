@@ -57,7 +57,7 @@ if (isset($_GET["id"])) {
                                 <div class="form-group">
                                     <label>Category</label>
                                     <select class="form-control" id="cmbCategory" name="category_id" required="">
-                                        <option disabled="" selected="">Select Category</option>
+                                       <!--  <option disabled="" selected="">Select Category</option> -->
                                         <?php
                                         foreach (Category::find_all() as $category) {
                                             if ($category->id == $product->category_id) {
@@ -77,7 +77,7 @@ if (isset($_GET["id"])) {
                                 <div class="form-group">
                                     <label>Store Location</label>
                                     <select class="form-control" id="cmbCategory" name="location_id" required="">
-                                        <option disabled="" selected="">Store Location</option>
+                                        <!-- <option disabled="" selected="">Store Location</option> -->
                                         <?php
                                         foreach (Location::find_all() as $data) {
                                             if ($data->id == $product->location_id) {

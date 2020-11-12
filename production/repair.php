@@ -99,7 +99,7 @@ if (!(isset($_GET["id"]))) {
                     <label>Device Vendor:</label>
                     <!-- <input type="text" class="form-control" placeholder="Delivery Name & Model Number" name="name" value="" required=""> -->
                     <select class="form-control" name="brand_id">
-                      <option disabled="" selected="">Select Vendor</option>
+                     
                     <?php
                     foreach(Brand::find_all() as $data){
                       if( $device_repair->brand_id == $data->id ){
@@ -120,7 +120,7 @@ if (!(isset($_GET["id"]))) {
                     <label>Device Name & Model Number:</label>
                     <!-- <input type="text" class="form-control" placeholder="Delivery Name & Model Number" name="name" value="" required=""> -->
                     <select class="form-control" name="device_model_id">
-                      <option disabled="" selected="">Select Device Name & Model Number</option>
+                     
                     <?php
                     foreach(DeviceModel::find_all() as $data){
                       if( $device_repair->device_model_id == $data->id ){
@@ -152,7 +152,7 @@ if (!(isset($_GET["id"]))) {
                     <label>Device Location & Number:</label>
                     <!-- <input type="text" class="form-control" placeholder="Delivery Name & Model Number" name="name" value="" required=""> -->
                     <select class="form-control" name="location_number">
-                      <option disabled="" selected="">Select Device Location & Number</option>
+                     
                     <?php
                     foreach(LocationNumber::find_all() as $data){
                       if( $device_repair->location_number == $data->id ){
@@ -212,7 +212,7 @@ if (!(isset($_GET["id"]))) {
                     <label>Repair Status:</label>
                     <!-- <input type="text" class="form-control" placeholder="Delivery Name & Model Number" name="name" value="" required=""> -->
                     <select class="form-control" name="repair_status">
-                      <option disabled="" selected="">Select Repair Status</option>
+                     
                     <?php
                     foreach(RepairStatus::find_all() as $data){
                       if( $device_repair->repair_status == $data->id ){
@@ -240,7 +240,7 @@ if (!(isset($_GET["id"]))) {
                     <label>Allocated Device Products:</label>
                     <!-- <input type="text" class="form-control" placeholder="Delivery Name & Model Number" name="name" value="" required=""> -->
                     <select class="form-control" name="product">
-                      <option disabled="" selected="">Allocated Device Products</option>
+                      
                     <?php
                     foreach(Product::find_all() as $data){
                       if( $device_repair->product == $data->id ){

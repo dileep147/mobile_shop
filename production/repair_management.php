@@ -112,7 +112,7 @@ include 'common/upper_content.php';
                   echo "<td>".$data->comment."</td>";             
 
                   echo "<td>".$data->product()->name."</td>";
-                   echo "<td>".$data->delivery_date."</td>";
+                  echo "<td>".$data->delivery_date."</td>";
                   
                   echo "<td>".number_format($data->advanced_payment,2)."</td>";
                   

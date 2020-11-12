@@ -18,8 +18,12 @@ require_once './../util/initialize.php';
 <body>
 
 <div class="container-fluid">
-  <div class="col-xs-12" style="text-align:center;">
-  <h2 style="font-weight:700;">ISHARA COMPUTERS & DJ CLUB - MINUWANGODA</h2>
+  <div class="col-xs-3" style="text-align:center;">
+    <img class="img" style="width:100px; height: 100px;" src="uploads/png/logo.jpeg" />
+    
+  </div>
+  <div class="col-xs-9" style="text-align:center;">
+  <h2 style="font-weight:700;">ISHARA COMPUTERS - Mobile Care & DJ CLUB - MINUWANGODA</h2>
    <h4 style="font-weight:500;">No. 03 Freedom Park, Sanasa Building, Minuwangoda.</h4>
    <h4 style="font-weight:500;">Tel: 0112-2283525/077-3574425/0766581760</h4>
    <h5 style="font-weight:500;">Email: inthe_dj@yahoo.com,inthe_dj@gmail.com  Web:isharacomputers.blogspot.com</h5>
@@ -27,9 +31,10 @@ require_once './../util/initialize.php';
 
  
 
+
  <div class="col-xs-12">
 
- <table style="width:100%;">
+ <table class="table table-striped">
    <?php 
     $s = $repair_data->job_date;
     $dt = new DateTime($s);
@@ -42,33 +47,35 @@ require_once './../util/initialize.php';
 
    ?>
    <tr>
-     <td style="width:50px;">Job Date.</td>
-     <td style="border:1px solid;padding:5px;width:100px;"><?php echo $job_date; ?></td>
-     <td style="width:50px;">Job No.</td>
-     <td style="border:1px solid;padding:5px;width:100px;"><?php echo $repair_data->job_no; ?></td>
-     <td style="width:50px;">Device Details</td>
-     <td style="border:1px solid;padding:5px;width:100px;"><?php echo $repair_data->device_model_id()->name; ?></td>
-     <td style="width:50px;">Delivery Date</td>
-     <td style="border:1px solid;padding-left:5px;width:100px;"><?php echo $delivery_date; ?></td>
+     <td class="col-xs-3">Job Date :<?php echo $job_date; ?></td>
+    
+     <td  class="col-xs-3">Job No. : <?php echo $repair_data->job_no; ?></td>
+     
+     <td  class="col-xs-3">Device Details : <?php echo $repair_data->device_model_id()->name; ?></td>
+     
+     <td  class="col-xs-3" >Delivery Date : <?php echo $delivery_date; ?></td>
+     
+   </tr>
+   
+
+   <tr >
+     <td colspan="2" style="text-align: center;">M/S : <?php echo $repair_data->customer_name; ?></td>
+
+     
+     <td colspan="2" style="text-align: center;">Contact No : <?php echo $repair_data->contact_no; ?></td>
+     
    </tr>
 
+    <tr >
+     <td colspan="2" style="text-align: left;">Device Model : <?php echo $repair_data->device_model_id()->name; ?></td>
+
+     
+     <td colspan="2" style="text-align: left;">Device Vendor : <?php echo $repair_data->brand_id()->name; ?></td>
+     
+   </tr>
    <tr>
-     <td>M/S</td>
-     <td colspan="5" style="border:1px solid;padding:5px;" ><?php echo $repair_data->customer_name; ?></td>
-     <td>Contact No:</td>
-     <td style="border:1px solid;padding:5px;"><?php echo $repair_data->contact_no; ?></td>
-   </tr>
-
- </table>
-</div>
-
- 
-
-
-
-
- <div class="col-xs-6">
-  <?php  
+      <td colspan="2" style="text-align: left;">
+         <?php  
    echo "Device Faults :";
    echo "<br>";
    
@@ -76,12 +83,9 @@ require_once './../util/initialize.php';
         echo $device_fault_data->device_fault_id()->name." <br/> ";
     }
   ?>  
-</div>
-
-<br>
-    
-<div class="col-xs-6">
-  <?php  
+      </td>
+      <td colspan="2" style="text-align: left;">
+        <?php  
     echo "Collected Accwssories :";
     echo "<br>";
     
@@ -91,7 +95,16 @@ require_once './../util/initialize.php';
     
         echo "<br>";
     ?>
-</div> 
+      </td>
+   </tr>
+
+ </table>
+</div>
+
+ 
+
+
+
 
 <br>
 

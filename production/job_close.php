@@ -91,15 +91,21 @@ if (!(isset($_POST["id"]) && $job_close = JobClose::find_by_id($_POST["id"]))) {
                                 </div>
                                 </div>
 
-                                <div class="col-md-6 col-sm-6 col-xs-12 ">
+                                <div class="col-md-6 col-sm-6 col-xs-6 ">
                                 <div class="form-group">
                                     <label>Amount:</label>
                                         <input type="number" class="form-control" placeholder="Amount" name="amount" value="<?php echo $job_close->amount; ?>" >
                                 </div>
                                 </div>
                                 
+                                <div class="col-md-6 col-sm-6 col-xs-6 ">
+                                <div class="form-group">
+                                    <label>Warranty:</label>
+                                        <input type="text" class="form-control" placeholder="Warranty" name="warranty" value="<?php echo $job_close->warranty; ?>" >
+                                </div>
+                                </div>
 
-                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                <div class="col-md-6 col-sm-6 col-xs-6">
                                 <div class="form-group">
                                     <label>Other Comments:</label>
                                         <textarea class="form-control" name="comment" ><?php echo $job_close->comment; ?></textarea>

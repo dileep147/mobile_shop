@@ -7,8 +7,20 @@ $user = User::find_by_id($_SESSION["user"]["id"]);
         <nav>
             <div class="nav toggle">
                 <a id="menu_toggle"><i class="fa fa-bars"></i></a>
-            </div>
+            </div> 
+
+           <div class="btn-group" role="group">
+            <button class="btn-xs"> <a href="repair.php" class="text-white bg-dark">Add Device Repair</a></button>
+            <button class="btn-xs "> <a href="product.php" class="text-white bg-dark">Add Product</a></button>    
+            <button class="btn-xs "> <a href="product_grn.php" class="text-white bg-dark">Add Product GRN</a></button>
+            <button class="btn-xs "> <a href="inventory_management.php" class="text-white bg-dark">All Inventry Management</a></button>  
+             <button class="btn-xs "> <a href="repair_management.php" class="text-white bg-dark">Device Repair Management</a></button>
+              <button class="btn-xs"> <a href="payment_close_management.php" class="text-white bg-dark">Payment Management</a></button>     
             
+           </div>
+              
+           
+           
             <ul class="nav navbar-nav navbar-right">
                 <li class="">
                     <a style="cursor: pointer;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">

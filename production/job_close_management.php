@@ -36,6 +36,7 @@ include 'common/upper_content.php';
                                     
                                     <th>Status</th>
                                     <th>Amount</th>
+                                    <th>Warranty</th>
                                     <th>Comment</th>
                                     <th>Action</th>
 
@@ -55,13 +56,15 @@ include 'common/upper_content.php';
                                         <td><?php echo $job->repair_id()->job_no?></td>
                                        
                                         <td><?php echo $job->status()->name ?></td> 
-                                        <td><?php echo $job->amount ?></td>                 
+                                        <td><?php echo $job->amount ?></td> 
+                                         <td><?php echo $job->warranty ?></td>               
                                         <td><?php echo $job->comment ?></td>
 
                                         <td>
                                             <form action="job_close.php" method="post"  style="float: left;">
                                                 <input type="hidden" name="id" value="<?php echo $job->id ?>"/>
                                                 <button type="submit" name="view" class="btn btn-primary btn-xs" ><i class="glyphicon glyphicon-edit"></i> Edit</button>
+                                                 <a href='job_close_print.php?id=<?php echo $job->id ?>'  class='btn btn-success btn-xs' target='_blank'>Print</a>
                                             </form>
 
                                         </td>

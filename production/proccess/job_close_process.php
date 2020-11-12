@@ -7,8 +7,7 @@ if (isset($_POST['save'])) {
     $job_close->status = trim($_POST['status']);
     $job_close->repair_id = trim($_POST['repair_id']);
     $job_close->comment = trim($_POST['comment']);
-   
-   
+     $job_close->warranty = trim($_POST['warranty']);
 
 
     if(trim($_POST['type'])=="0"){
@@ -34,6 +33,7 @@ if (isset($_POST['update'])) {
     $job_close->status = trim($_POST['status']);
     $job_close->repair_id = trim($_POST['repair_id']);
     $job_close->comment = trim($_POST['comment']);
+     $job_close->warranty = trim($_POST['warranty']);
     
     
     if(trim($_POST['type'])=="0"){
